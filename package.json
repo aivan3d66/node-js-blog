@@ -2,7 +2,7 @@
   "name": "node-blog",
   "version": "1.0.0",
   "description": "Node.js project",
-  "main": "app.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
