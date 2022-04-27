@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 
 const Post = require('./models/post');
 const app = express();
@@ -26,6 +27,8 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.urlencoded({extended: false}));
 
 app.use(express.static('styles'));
+
+app.use(methodOverride('__method'));
 
 app.get('/', (req, res) => {
   const title = 'Home';
