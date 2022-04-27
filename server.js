@@ -69,6 +69,19 @@ app.delete('/post/:id', (req, res) => {
     })
 })
 
+app.get('/edit/:id', (req, res) => {
+  const title = 'Edit post';
+  Post
+    .findById(req.params.id)
+    .then(post => {
+      res.render(createPath('edit-post'), {post, title})
+    })
+    .catch((error) => {
+      console.log(error);
+      res.render(createPath('error'), {title: "Error"});
+    })
+})
+
 app.get('/posts', (req, res) => {
   const title = 'Posts';
   Post
