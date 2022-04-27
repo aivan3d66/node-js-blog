@@ -56,6 +56,19 @@ app.get('/posts/:id', (req, res) => {
     })
 });
 
+app.put('/edit/:id', (req, res) => {
+  const {title, author, text} = req.body;
+  const {id} = req.params;
+
+  Post
+    .findByIdAndUpdate(id, {title, author, text})
+    .then(result => res.redirect('/posts/${id}'))
+    .catch((error) => {
+      console.log(error);
+      res.render(createPath('error'), {title: 'Error'})
+    })
+});
+
 app.delete('/post/:id', (req, res) => {
   const title = 'Post';
   Post
