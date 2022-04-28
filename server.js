@@ -3,15 +3,16 @@ const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const postRoutes = require('./routes/post-routes');
+const contactRoutes = require('./routes/contacts-routes');
 
-const Post = require('./models/post');
 const app = express();
-
-app.set('view engine', 'ejs');
-
 const PORT = 3000;
 const db = `mongodb+srv://aivan3d66:123qwe@cluster0.idipw.mongodb.net/node-blog?retryWrites=true&w=majority`;
+
 const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`);
+
+app.set('view engine', 'ejs');
 
 mongoose
   .connect(db)
@@ -23,101 +24,15 @@ app.listen(PORT, (error) => {
 })
 
 app.use(express.urlencoded({ extended: false }));
-
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
-
 app.use(express.static('styles'));
-
 app.use(methodOverride('_method'));
+app.use(contactRoutes);
+app.use(postRoutes);
 
 app.get('/', (req, res) => {
   const title = 'Home';
   res.render(createPath('index'), { title });
-});
-
-app.get('/contacts', (req, res) => {
-  const title = 'Contacts';
-  const contacts = [
-    {name: 'YouTube', link: 'http://youtube.com/aivan3d66'},
-    {name: 'Linkedin', link: 'https://www.linkedin.com/in/ivan-adamouski-55a421227/'},
-    {name: 'GitHub', link: 'http://github.com/aivan3d66'},
-  ];
-  res.render(createPath('contacts'), {contacts, title});
-});
-
-app.get('/posts/:id', (req, res) => {
-  const title = 'Post';
-  Post
-    .findById(req.params.id)
-    .then(post => res.render(createPath('post'), {post, title}))
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
-});
-
-app.delete('/posts/:id', (req, res) => {
-  Post
-    .findByIdAndDelete(req.params.id)
-    .then((result) => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
-});
-
-app.get('/edit/:id', (req, res) => {
-  const title = 'Edit Post';
-  Post
-    .findById(req.params.id)
-    .then(post => res.render(createPath('edit-post'), {post, title}))
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
-});
-
-app.put('/edit/:id', (req, res) => {
-  const {title, author, text} = req.body;
-  const {id} = req.params;
-  Post
-    .findByIdAndUpdate(id, {title, author, text})
-    .then((result) => res.redirect(`/posts/${id}`))
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
-});
-
-app.get('/posts', (req, res) => {
-  const title = 'Posts';
-  Post
-    .find()
-    .sort({createdAt: -1})
-    .then(posts => res.render(createPath('posts'), {posts, title}))
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
-});
-
-app.get('/add-post', (req, res) => {
-  const title = 'Add Post';
-  res.render(createPath('add-post'), {title});
-});
-
-app.post('/add-post', (req, res) => {
-  const {title, author, text} = req.body;
-  const post = new Post({title, author, text});
-  post
-    .save()
-    .then((result) => res.redirect('/posts'))
-    .catch((error) => {
-      console.log(error);
-      res.render(createPath('error'), {title: 'Error'});
-    });
 });
 
 app.use((req, res) => {
