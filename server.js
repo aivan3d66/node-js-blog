@@ -1,16 +1,14 @@
 const express = require('express');
-const path = require('path');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const postRoutes = require('./routes/post-routes');
 const contactRoutes = require('./routes/contacts-routes');
+const createPath = require('./helpers/create-path');
 
 const app = express();
 const PORT = 3000;
 const db = `mongodb+srv://aivan3d66:123qwe@cluster0.idipw.mongodb.net/node-blog?retryWrites=true&w=majority`;
-
-const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`);
 
 app.set('view engine', 'ejs');
 
