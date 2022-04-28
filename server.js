@@ -6,20 +6,19 @@ const postRoutes = require('./routes/post-routes');
 const contactRoutes = require('./routes/contacts-routes');
 const createPath = require('./helpers/create-path');
 const postApiRoutes = require('./api/api-post-routes');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
-const db = `mongodb+srv://aivan3d66:123qwe@cluster0.idipw.mongodb.net/node-blog?retryWrites=true&w=majority`;
 
 app.set('view engine', 'ejs');
 
 mongoose
-  .connect(db)
+  .connect(process.env.MONGO_URL)
   .then((res) => console.log('Connected to DB'))
   .catch(error => console.log(error))
 
-app.listen(PORT, (error) => {
-  error ? console.log(error) : console.log(`listening port ${PORT}`)
+app.listen(process.env.PORT, (error) => {
+  error ? console.log(error) : console.log(`listening port ${process.env.PORT}`)
 })
 
 app.use(express.urlencoded({ extended: false }));
