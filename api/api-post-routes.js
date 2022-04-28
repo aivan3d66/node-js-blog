@@ -7,7 +7,7 @@ const {
   editPost,
   addPost,
   getPosts
-} = require('../controller/post-controllers');
+} = require('../controller/api-post-controller');
 
 // Get all posts
 router.get('/api/posts', getPosts);
