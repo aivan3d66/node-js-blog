@@ -2,11 +2,6 @@ const Post = require("../models/post");
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const title = 'Home';
-  res.render(createPath('index'), { title });
-});
-
 router.get('/posts/:id', (req, res) => {
   const title = 'Post';
   Post
