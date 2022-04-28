@@ -3,20 +3,26 @@
 <%- include('./partials/head.ejs') %>
 <body>
 <%- include('./partials/nav.ejs') %>
-<article class="post">
-    <div class="info">
-        <span><%= post.createdAt.toLocaleDateString() || 'No date' %></span>
-        <span><%= post.author %></span>
-    </div>
-    <h1><%= post.title %></h1>
-    <p><%= post.text %></p>
-    <a href="/edit/<%= post.id %>" class="btn-edit">
-        <i class="fas fa-edit"></i>
-    </a>
-    <button class="btn-delete" data-id="<%= post.id %>">
-        <i class="fas fa-trash-alt" data-id="<%= post.id %>"></i>
-    </button>
-</article>
+
+<div class="post-wrapper">
+    <li class="posts-list__item">
+        <h2 class="posts-list__item-title">
+            <%= post.title %>
+        </h2>
+        <div class="posts-list__item-info">
+            <span><%= post.createdAt.toLocaleString() || 'No date' %></span>
+            <span><%= post.author %></span>
+        </div>
+        <p class="posts-list__item-text"><%= post.text %></p>
+        <a href="/edit/<%= post.id %>" class="posts-list__item-btn btn-edit">
+            <i class="fas fa-edit"></i>
+        </a>
+        <button class="posts-list__item-btn btn-delete" data-id="<%= post.id %>">
+            <i class="fas fa-trash-alt" data-id="<%= post.id %>"></i>
+        </button>
+    </li>
+</div>
+
 
 <script>
   document.addEventListener('click', (e) => {

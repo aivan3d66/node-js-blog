@@ -3,28 +3,28 @@
 <%- include('./partials/head.ejs') %>
 <body>
 <%- include('./partials/nav.ejs') %>
-<h1>Posts:</h1>
-<ul>
-    <% if (posts.length) { %>
-        <% posts.forEach(({id, title, createdAt, text, author}) => { %>
-            <li>
-                <article>
-                    <h2>
+<div class="posts-page">
+    <ul class="posts-list">
+        <% if (posts.length) { %>
+            <% posts.forEach(({id, title, createdAt, text, author}) => { %>
+                <li class="posts-list__item">
+                    <h2 class="posts-list__item-title">
                         <a href="/posts/<%= id %>"><%= title %></a>
                     </h2>
-                    <p><%= text %></p>
-                    <div class="info">
-                        <span><%= createdAt.toLocaleDateString() %></span>
+                    <div class="posts-list__item-info">
+                        <span><%= createdAt.toLocaleString() %></span>
                         <span><%= author %></span>
                     </div>
-                    <button class="btn-delete" data-id="<%= id %>">
+                    <p class="posts-list__item-text"><%= text %></p>
+                    <button class="posts-list__item-btn btn-delete" data-id="<%= id %>">
                         <i class="fas fa-trash-alt" data-id="<%= id %>"></i>
                     </button>
-                </article>
-            </li>
-        <% }) %>
-    <% } %>
-</ul>
+
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+</div>
 
 <script>
   document.addEventListener('click', (e) => {

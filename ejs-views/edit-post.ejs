@@ -3,23 +3,25 @@
 <%- include('./partials/head.ejs') %>
 <body>
 <%- include('./partials/nav.ejs') %>
-<form id="post-form" method="post" action="/edit/<%= post.id %>?_method=PUT">
-    <div class="form-info">
-        <label>Post Title
-            <input type="text" name="title" value="<%= post.title %>">
-        </label>
-        <label>Author
-            <input type="text" name="author" value="<%= post.author %>">
-        </label>
-    </div>
-    <div class="form-text">
-        <label>Post Text
-            <textarea name="text"><%= post.text %></textarea>
-        </label>
-    </div>
-    <div class="form-button">
-        <input type="submit" value="Submit">
-    </div>
-</form>
+<div class="form-wrapper">
+    <form class="post-form" id="post-form" method="post" action="/edit/<%= post.id %>?_method=PUT">
+        <div class="form-info">
+            <label for="post-title">Post Title</label>
+            <input id="post-title" class="form-field" type="text" name="title" value="<%= post.title %>">
+
+            <label for="post-author">Author</label>
+            <input id="post-author" class="form-field" type="text" name="author" value="<%= post.author %>">
+
+        </div>
+        <div class="form-text">
+            <label>Post Text
+                <textarea class="form-field" name="text"><%= post.text %></textarea>
+            </label>
+        </div>
+        <div class="form-button">
+            <input type="submit" value="Add post">
+        </div>
+    </form>
+</div>
 </body>
 </html>

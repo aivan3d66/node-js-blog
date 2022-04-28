@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head.ejs') %>
+<%- include('./partials/head.ejs') %>
 <body>
-  <%- include('./partials/nav.ejs') %>
-  <h1>Contacts:</h1>
-  <ul class="contacts">
-    <% if (contacts.length) { %>
-      <% contacts.forEach(({ link, name }) => { %>
-        <li>
-          <a href="<%= link %>"><%= name %></a>
-        </li>
-      <% }) %>
-    <% } %>
-  </ul>
+<%- include('./partials/nav.ejs') %>
+<div class="contacts-page">
+    <h1 class="contacts-page__title">My contacts</h1>
+    <ul class="contacts-page__list">
+        <% if (contacts.length) { %>
+            <% contacts.forEach(({link, name}) => { %>
+                <li>
+                    <a href="<%= link %>"><%= name %></a>
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+</div>
 </body>
 </html>
