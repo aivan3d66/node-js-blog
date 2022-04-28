@@ -22,7 +22,7 @@ const editPost = (req, res) => {
   const { title, author, text } = req.body;
   const { id } = req.params;
   Post
-    .findByIdAndUpdate(req.params.id, { title, author, text })
+    .findByIdAndUpdate(req.params.id, { title, author, text }, {new: true})
     .then((post) => res.statusCode(200).json(post))
     .catch((error) => handleError(res, error));
 }
