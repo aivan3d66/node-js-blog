@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/head.ejs') %>
+<%- include('./partials/head.ejs') %>
 <body>
-  <%- include('./partials/nav.ejs') %>
-  <form id="post-form" method="post" action="/add-post">
-    <div class="form-info">
-      <label>Post Title
-        <input type="text" name="title">
-      </label>
-      <label>Author
-        <input type="text" name="author">
-      </label>
-    </div>
-    <div class="form-text">
-      <label>Post Text
-        <textarea name="text"></textarea>
-      </label>
-    </div>
-    <div class="form-button">
-      <input type="submit" value="Submit">
-    </div>
-  </form>
+<%- include('./partials/nav.ejs') %>
+<div class="form-wrapper">
+    <form id="post-form" method="post" action="/add-post">
+        <div class="form-info">
+            <div>
+                <label for="post-title">Post Title</label>
+                <input id="post-title" class="form-field" type="text" name="title" placeholder="Title">
+            </div>
+            <div>
+                <label for="post-author">Post author</label>
+                <input id="post-author" class="form-field" type="text" name="author" placeholder="Author">
+            </div>
+        </div>
+        <div class="form-text">
+            <label>Post Text
+                <textarea name="text" placeholder="Write the text ..."></textarea>
+            </label>
+        </div>
+        <div class="form-button">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

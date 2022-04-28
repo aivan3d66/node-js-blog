@@ -128,7 +128,7 @@ a {
 
 /* Post form */
 
-form {
+.form-wrapper {
   display: flex;
   flex-direction: column;
   padding: 30px;
@@ -139,12 +139,13 @@ form {
   border-radius: 3px;
 }
 
-form div {
-  margin-bottom: 20px;
+.form-wrapper div {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-form div label {
+.form-wrapper label {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -153,15 +154,14 @@ form div label {
 
 .form-info {
   justify-content: space-between;
-  gap: 20px;
 }
 
-input,
-textarea {
+.form-info input,
+.form-text textarea {
   min-height: 30px;
-  padding: 3px 5px;
+  padding: 5px 10px;
   margin: 10px 0;
-  color: #fff;
+  color: rgba(64, 64, 64, 0.7);
   font-size: 18px;
   border: 1px solid rgb(204, 204, 204);
   border-radius: 3px;
@@ -180,9 +180,9 @@ textarea:focus {
   border-bottom: 1px solid #00d2ff;
 }
 
-textarea {
-  resize: none;
+.form-text textarea {
   min-height: 150px;
+  resize: none;
 }
 
 .form-button {
@@ -191,17 +191,20 @@ textarea {
   width: 100%;
 }
 
-.form-button input {
+.form-button button {
   width: 100%;
   padding: 10px 15px;
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid transparent;
   cursor: pointer;
   transition: 0.3s;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.form-button input:hover {
-  border: 1px solid transparent;
+.form-button button:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
