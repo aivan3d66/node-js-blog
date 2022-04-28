@@ -12,6 +12,19 @@ const getPost = (res, req) => {
     });
 }
 
+const deletePost = (res, req) => {
+  Post
+    .findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.render(createPath('error'), {title: 'Error'});
+    });
+}
+
 module.exports = {
-  getPost
+  getPost,
+  deletePost
 }
