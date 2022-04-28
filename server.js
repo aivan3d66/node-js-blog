@@ -10,7 +10,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 const PORT = 3000;
-const db = `mongodb+srv://aivan3d66:kMRdkgpz7373@cluster0.idipw.mongodb.net/node-blog?retryWrites=true&w=majority`;
+const db = `mongodb+srv://aivan3d66:123qwe@cluster0.idipw.mongodb.net/node-blog?retryWrites=true&w=majority`;
 const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`);
 
 mongoose
