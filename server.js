@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const postRoutes = require('./routes/post-routes');
 const contactRoutes = require('./routes/contacts-routes');
 const createPath = require('./helpers/create-path');
+const postApiRoutes = require('./api/api-post-routes');
 
 const app = express();
 const PORT = 3000;
@@ -27,6 +28,7 @@ app.use(express.static('styles'));
 app.use(methodOverride('_method'));
 app.use(contactRoutes);
 app.use(postRoutes);
+app.use(postApiRoutes);
 
 app.get('/', (req, res) => {
   const title = 'Home';
