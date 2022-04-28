@@ -1,15 +1,13 @@
 body {
-  padding-top: 80px;
-  min-height: calc(100vh - 90px);
+  padding-top: 60px;
+  min-height: calc(100vh - 76px);
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
+  color: #ffffff;
   background: linear-gradient(to bottom, #00d2ff, #928dab);
-  color: #fff;
 }
 
-h1 {
-  text-transform: uppercase;
-}
+/* Navigation */
 
 nav {
   position: absolute;
@@ -22,30 +20,42 @@ nav {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-nav ul {
-  margin: 0;
+.nav-list {
   display: flex;
-}
-
-nav a {
-  min-height: 60px;
-  display: block;
-  padding: 10px 20px;
-  line-height: 60px;
-}
-
-li {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-ul {
-  padding: 0;
+.nav-list__item a {
+  display: block;
+  min-height: 60px;
+  padding: 10px 20px;
+  line-height: 60px;
+  transition: 0.3s;
+}
+
+.nav-list__item a:hover {
+  color: #00d2ff;
 }
 
 a {
+  color: #ffffff;
   text-decoration: none;
-  color: #fff;
 }
+
+/* Home page */
+
+.main-page {
+  text-align: center;
+}
+
+.main-page p {
+  padding: 0;
+  margin: 0;
+}
+
+/* Post page */
 
 article {
   background-color: rgba(0, 0, 0, 0.4);
