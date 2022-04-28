@@ -1,10 +1,22 @@
+html {
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   padding-top: 60px;
   min-height: calc(100vh - 76px);
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
   color: #ffffff;
-  background: linear-gradient(to bottom, #00d2ff, #928dab);
+  background: linear-gradient(45deg, #EECFBA, #C5DDE8) no-repeat center 100%;
 }
 
 /* Navigation */
@@ -55,36 +67,76 @@ a {
   margin: 0;
 }
 
-/* Post page */
+/* Posts page */
 
-article {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
-  border-radius: 3px;
-  margin-bottom: 10px;
+.posts-page {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.posts-list {
+  padding: 40px 0;
+  list-style: none;
+}
+
+.post-wrapper {
+  padding: 60px 0;
+  list-style: none;
+}
+
+.posts-list__item {
   position: relative;
+  max-width: 600px;
+  padding: 10px 20px;
+  margin: 0 auto 20px auto;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-.info {
+.posts-list__item-title {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-family: 'Lora', Arial, serif;
+  font-size: 24px;
+}
+
+.posts-list__item-title a {
+  color: #000000;
+  transition: 0.3s;
+}
+
+.posts-list__item-title a:hover {
+  color: #EECFBA;
+}
+
+.posts-list__item-info {
   display: flex;
-  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 14px;
 }
 
-.post .info {
-  justify-content: flex-start;
-  gap: 50px;
+.posts-list__item-info span {
+  margin-right: 20px;
 }
 
-h2 a {
-  color: aqua;
+.posts-list__item-text {
+  font-size: 14px;
 }
+
+/* Post form */
 
 form {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
-  border-radius: 3px;
   display: flex;
   flex-direction: column;
+  padding: 30px;
+  margin: 60px auto;
+  max-width: 600px;
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 3px;
 }
 
 form div {
@@ -96,6 +148,7 @@ form div label {
   display: flex;
   flex-direction: column;
   flex: 1;
+  font-size: 18px;
 }
 
 .form-info {
@@ -106,12 +159,25 @@ form div label {
 input,
 textarea {
   min-height: 30px;
-  border: 1px solid #000;
-  background-color: rgba(0, 0, 0, 0.4);
+  padding: 3px 5px;
+  margin: 10px 0;
   color: #fff;
   font-size: 18px;
-  padding: 3px 5px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: rgba(204, 204, 204, 0.3);
   outline: none;
+}
+
+input:hover,
+textarea:hover {
+  border-color: #C5DDE8;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #00d2ff;
 }
 
 textarea {
@@ -121,30 +187,35 @@ textarea {
 
 .form-button {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  width: 100%;
 }
 
 .form-button input {
-  text-transform: uppercase;
+  width: 100%;
   padding: 10px 15px;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: 0.3s;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .form-button input:hover {
+  border: 1px solid transparent;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .home,
 .error {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 76px);
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
-  background: linear-gradient(to bottom, #00d2ff, #928dab);
-  color: #fff;
+  background: linear-gradient(45deg, #EECFBA, #C5DDE8) no-repeat center 100%;
+  color: #000000;
   padding-top: 0;
 }
 
@@ -164,24 +235,23 @@ textarea {
   margin-bottom: 20px;
 }
 
-.btn-edit,
-.btn-delete {
+.posts-list__item-btn {
   position: absolute;
   top: 10px;
+  width: 38px;
+  padding: 8px 12px;
+  font-size: 14px;
   text-transform: uppercase;
-  padding: 10px 15px;
-  cursor: pointer;
-  border: 1px solid #000;
-  background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
-  width: 48px;
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 3px;
-  font-size: 16px;
+  border: 1px solid transparent;
   box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.btn-edit,
-.btn-delete:hover {
+.posts-list__item-btn:hover {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -191,4 +261,34 @@ textarea {
 
 .btn-delete {
   right: 10px;
+  font-size: 15px;
+}
+
+/* Contacts */
+
+.contacts-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 768px;
+  margin: 60px auto;
+  color: #000000;
+}
+
+.contacts-page h1 {
+  text-align: center;
+}
+
+.contacts-page__list {
+  color: #000000;
+  text-align: center;
+  list-style: none;
+}
+
+.contacts-page__list a {
+  color: #000000;
+}
+
+.contacts-page__list a:hover {
+  color: rgba(0, 0, 0, 0.5);
 }
