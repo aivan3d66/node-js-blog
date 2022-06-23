@@ -6,6 +6,7 @@ const postRoutes = require('./routes/post-routes');
 const contactRoutes = require('./routes/contacts-routes');
 const createPath = require('./helpers/create-path');
 const postApiRoutes = require('./api/api-post-routes');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 const app = express();
@@ -22,6 +23,7 @@ app.listen(process.env.PORT, (error) => {
 })
 
 app.use(express.urlencoded({ extended: false }));
+app.use(fileUpload({}));
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 app.use(express.static('styles'));
 app.use(methodOverride('_method'));
