@@ -14,7 +14,10 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-}, { timestamps: true });
+  picture: {
+    type: String,
+  },
+}, {timestamps: true});
 
 const Post = mongoose.model('Post', postSchema);
 
