@@ -57,27 +57,28 @@ const getAddPost = (req, res) => {
 const addPost = (req, res) => {
   const { title, author, text, picture } = req.body;
   const post = new Post({ title, author, text, picture });
+  console.log(req.files)
+
   post
     .save()
     .then((result) => {
-      if (req && result) {
+      if (req && req.files) {
         const images = [];
-        for (const item in req.files) {
-          const imgName = item.name;
+
+        if (req.files.picture) {
+          const imgName = req.files.picture.name;
           const img = 'upload/' + imgName;
 
           images.push({ img, imgName });
         }
-        res.redirect('/posts', { images });
-      } else {
-        res.redirect('/posts', { images: []});
-      }
+        console.log(images)
 
-      // res.redirect('/posts')
+        res.redirect(200, '/posts', { images });
+      } else {
+        res.redirect(200, '/posts', { images: []});
+      }
     })
     .catch((error) => handleError(res, error));
-
-  console.log(req.files)
 }
 
 module.exports = {
